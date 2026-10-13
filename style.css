@@ -1,0 +1,119 @@
+:root {
+  --bg: #f6f7fb;
+  --flaeche: #ffffff;
+  --text: #1b1f2a;
+  --leise: #5a6275;
+  --linie: #d9dde8;
+  --akzent: #2f5bea;
+  --akzent-text: #ffffff;
+  --merke-bg: #fff6d6;
+  --merke-rand: #e3b505;
+  --gespielt: #d9e3ff;
+  --naechster: #ffe29a;
+  --radius: 14px;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12141b; --flaeche: #1b1f2a; --text: #eef0f6; --leise: #a3abbf; --linie: #323850;
+    --akzent: #7b9cff; --akzent-text: #0b1020; --merke-bg: #3a3212; --merke-rand: #e3b505;
+    --gespielt: #2a3a6e; --naechster: #6b5410;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12141b; --flaeche: #1b1f2a; --text: #eef0f6; --leise: #a3abbf; --linie: #323850;
+  --akzent: #7b9cff; --akzent-text: #0b1020; --merke-bg: #3a3212; --merke-rand: #e3b505;
+  --gespielt: #2a3a6e; --naechster: #6b5410;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+.skip { position: absolute; left: -999px; top: 0; background: var(--akzent); color: var(--akzent-text); padding: 8px 12px; z-index: 10; }
+.skip:focus { left: 8px; top: 8px; }
+
+.kopf { background: var(--flaeche); border-bottom: 1px solid var(--linie); }
+.logo { display: block; max-width: 760px; margin: 0 auto; padding: 14px 16px; font-weight: 700; color: var(--text); text-decoration: none; }
+.inhalt { max-width: 760px; margin: 0 auto; padding: 16px 16px 40px; }
+.fuss-seite { max-width: 760px; margin: 0 auto; padding: 0 16px 32px; color: var(--leise); font-size: 14px; }
+
+h1 { font-size: 1.7rem; line-height: 1.2; margin: 0.3em 0 0.5em; }
+h2 { font-size: 1.25rem; margin: 1.6em 0 0.6em; }
+h3 { font-size: 1.15rem; margin: 0 0 0.5em; }
+h4 { font-size: 1rem; margin: 0 0 8px; }
+p { margin: 0 0 0.9em; }
+a { color: var(--akzent); }
+code { background: var(--gespielt); padding: 1px 6px; border-radius: 6px; font: 0.95em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; white-space: nowrap; }
+:focus-visible { outline: 3px solid var(--akzent); outline-offset: 2px; }
+
+.einleitung { color: var(--leise); }
+.fortschritt { font-weight: 600; }
+.kicker { color: var(--leise); margin: 0; font-size: 14px; }
+.zurueck { display: inline-block; margin-bottom: 8px; }
+.ziel { background: var(--flaeche); border: 1px solid var(--linie); border-radius: var(--radius); padding: 12px 14px; }
+
+.liste { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.karte {
+  display: flex; align-items: center; gap: 12px; padding: 12px 14px; text-decoration: none; color: var(--text);
+  background: var(--flaeche); border: 1px solid var(--linie); border-radius: var(--radius);
+}
+.karte:hover { border-color: var(--akzent); }
+.karte-text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.karte-text span { color: var(--leise); font-size: 14px; }
+.nr { flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--akzent); color: var(--akzent-text); display: grid; place-items: center; font-weight: 700; }
+.haken { flex: none; color: #1e9e4a; font-weight: 800; font-size: 1.3rem; min-width: 1ch; }
+
+.abschnitt { margin: 28px 0; }
+.schritte { padding-left: 1.3em; margin: 0 0 1em; }
+.schritte li { margin-bottom: 0.4em; }
+.merke { background: var(--merke-bg); border-left: 4px solid var(--merke-rand); border-radius: 8px; padding: 10px 14px; margin: 14px 0; }
+
+.demo { background: var(--flaeche); border: 1px solid var(--linie); border-radius: var(--radius); padding: 12px; margin: 14px 0; }
+.cube-wrap { width: 100%; max-width: 340px; margin: 0 auto; aspect-ratio: 1; }
+.cube-svg { width: 100%; height: 100%; display: block; }
+.seg { display: flex; justify-content: center; gap: 0; margin: 6px 0 10px; }
+.seg-btn {
+  font: inherit; font-size: 14px; padding: 8px 12px; min-height: 40px; border: 1px solid var(--linie); background: transparent; color: var(--text); cursor: pointer;
+}
+.seg-btn:first-child { border-radius: 10px 0 0 10px; }
+.seg-btn:last-child { border-radius: 0 10px 10px 0; }
+.seg-btn + .seg-btn { border-left: 0; }
+.seg-btn[aria-pressed="true"] { background: var(--akzent); color: var(--akzent-text); border-color: var(--akzent); }
+
+.status { min-height: 4.6em; margin: 4px 0 8px; }
+.zeile { display: flex; justify-content: space-between; align-items: center; gap: 8px; color: var(--leise); font-size: 14px; margin-bottom: 8px; }
+.tempo select { font: inherit; padding: 4px 6px; border-radius: 8px; border: 1px solid var(--linie); background: var(--flaeche); color: var(--text); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip {
+  font: 600 14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; min-width: 40px; min-height: 36px; padding: 4px 8px;
+  border: 1px solid var(--linie); border-radius: 8px; background: transparent; color: var(--text); cursor: pointer;
+}
+.chip.gespielt { background: var(--gespielt); }
+.chip.naechster { background: var(--naechster); border-color: var(--merke-rand); }
+.chip.gruppe-anfang { margin-left: 8px; }
+
+.controls { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.btn {
+  font: inherit; font-weight: 600; min-height: 44px; padding: 8px 14px; border-radius: 10px; border: 1px solid var(--linie);
+  background: var(--flaeche); color: var(--text); cursor: pointer; text-align: center; text-decoration: none; display: inline-flex; align-items: center; justify-content: center;
+}
+.btn:disabled { opacity: 0.45; cursor: default; }
+.btn.primary { background: var(--akzent); color: var(--akzent-text); border-color: var(--akzent); }
+.btn.toggle[aria-pressed="true"] { background: #1e9e4a; color: #fff; border-color: #1e9e4a; }
+.tasten { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin: 8px 0 12px; }
+.taste { min-width: 0; padding: 8px 0; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+.fuss { margin-top: 36px; display: grid; gap: 12px; }
+.blaettern { display: grid; gap: 8px; }
+
+@media (min-width: 560px) {
+  .controls { grid-template-columns: repeat(4, 1fr); }
+  .blaettern { grid-template-columns: 1fr 1fr; }
+  .blaettern .btn:only-child { grid-column: 2; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
